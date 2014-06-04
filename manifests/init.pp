@@ -5,10 +5,12 @@
 
 class splunkforwarder
 (
-  $install_source          = 'undef',
-  $deployment_server       = "splunk.${::domain}",
-  $deployment_server_port  = '9997',
-  $deploymentclient_config = 'undef'
+  $install_source           = 'undef',
+  $deployment_server        = "splunk.${::domain}",
+  $deployment_server_port   = '9997',
+  $deployment_client_config = 'C:/Program Filest/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf',
+  $inputs_config            = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf',
+  $server_config            = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
 ) {
 
  package {'universalforwarder':
@@ -20,9 +22,9 @@ class splunkforwarder
       'SERVICESTARTTYPE'       => "auto",
   }
   }
-  file { 'deploymentserver':
+  file { 'deploymentclient':
     ensure   => present,
-    path     => "${::deploymentclient_config}",
+    path     => $deployment_client_config,
     mode     => '0700',
     content  => template('splunkforwarder/deploymentserver.erb'),
     require  => Package['universalforwarder'],
@@ -35,16 +37,20 @@ class splunkforwarder
   }
   ini_setting { 'inputsconf_fqdn':
     ensure  => present,
-    path    => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf',
+    path    => $inputs_config,
     section => 'default',
     setting => 'host',
     value   => $fqdn,
+    notify  => Service['splunkforwarder'],
+    require => Package['universalforwarder'],
   }
   ini_setting { 'serverconf_fqdn':
     ensure  => present,
-    path    => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
+    path    => $server_config,
     section => 'general',
     setting => 'serverName',
     value   => $fqdn,
+    notify  => Service['splunkforwarder'],
+    require => Package['universalfowarder'],
   }
   }

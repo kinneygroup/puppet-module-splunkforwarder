@@ -18,7 +18,7 @@ install_source
 -----------
 Path to Splunk Universal Forwarder .msi file for installation.
 
-- *Default*: false
+- *Default*: 'undef
 
 deployment_server
 ---------------------------
@@ -31,3 +31,21 @@ deployment_server_port
 The TCP port used to communicate with the Slunk deployment server.
 
 - *Default*: '9997'
+
+deployment_client_config
+---------------------------
+Deployment client configuration file, stores Splunk deployment server settings.
+
+- *Default*: 'C:/Program Filest/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf'
+
+inputs_config
+-------------
+Splunk forwarder monitoring inputs.
+
+- *Default*: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf'
+
+server_config
+-------------
+Splunk forwarder configuration file.
+
+- *Default*: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf'
