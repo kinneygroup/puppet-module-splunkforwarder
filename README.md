@@ -18,7 +18,7 @@ install_source
 -----------
 Path to Splunk Universal Forwarder .msi file for installation.
 
-- *Default*: 'undef
+- *Default*: 'C:/splunkforwarder-6.1.1-207789-x64-release.msi'
 
 deployment_server
 ---------------------------
@@ -49,3 +49,19 @@ server_config
 Splunk forwarder configuration file.
 
 - *Default*: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf'
+
+===
+
+## Sample usage:
+Install and configure splunk universal forwarder
+
+<pre>
+class {'splunkforwarder':
+    deployment_server        => 'deploymentserver.splunk.local',
+    deployment_server_port   => 8089,
+    install_source           => "\\\\appserver.splunk.local\\apps\\splunkforwarder-6.1.1-207789-x64-release.msi",
+    deployment_client_config => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf',
+    inputs_config            => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf',
+    server_config            => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
+}
+</pre>

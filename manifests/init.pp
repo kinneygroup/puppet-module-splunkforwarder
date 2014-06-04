@@ -5,7 +5,7 @@
 
 class splunkforwarder
 (
-  $install_source           = 'undef',
+  $install_source           = 'C:/splunkforwarder-6.1.1-207789-x64-release.msi',
   $deployment_server        = "splunk.${::domain}",
   $deployment_server_port   = '9997',
   $deployment_client_config = 'C:/Program Filest/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf',
@@ -13,13 +13,13 @@ class splunkforwarder
   $server_config            = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
 ) {
 
- package {'universalforwarder':
-    source          => "${::install_source}",
+  package {'universalforwarder':
+    source          => $install_source,
     install_options => {
       'AGREETOLICENSE'         => 'Yes',
       'DEPLOYMENT_SERVER'      => "${::deployment_server}:${::deployment_server_port}",
-      'LAUNCHSPLUNK'           => "1",
-      'SERVICESTARTTYPE'       => "auto",
+      'LAUNCHSPLUNK'           => 1,
+      'SERVICESTARTTYPE'       => 'auto',
   }
   }
   file { 'deploymentclient':
@@ -51,6 +51,6 @@ class splunkforwarder
     setting => 'serverName',
     value   => $fqdn,
     notify  => Service['splunkforwarder'],
-    require => Package['universalfowarder'],
+    require => Package['universalforwarder'],
   }
   }
