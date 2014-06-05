@@ -53,15 +53,13 @@ Splunk forwarder configuration file.
 ===
 
 ## Sample usage:
-Install and configure splunk universal forwarder
+Install and configure splunk universal forwarder through Hiera.
 
 <pre>
-class {'splunkforwarder':
-    deployment_server        => 'deploymentserver.splunk.local',
-    deployment_server_port   => 8089,
-    install_source           => "\\\\appserver.splunk.local\\apps\\splunkforwarder-6.1.1-207789-x64-release.msi",
-    deployment_client_config => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf',
-    inputs_config            => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf',
-    server_config            => 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
-}
+splunkforwarder::install_source: "\\\\appserver.splunk.local\\apps\\splunkforwarder-6.1.1-207789-x64-release.msi"
+splunkforwarder::deployment_server: 'deploymentserver.splunk.local'
+splunkforwarder::deployment_server_port: 9000
+splunkforwarder::deployment_client_config: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf'
+splunkforwarder::inputs_config: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf'
+splunkforwarder::server_config: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf'
 </pre>

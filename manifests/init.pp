@@ -13,7 +13,7 @@ class splunkforwarder
   $server_config            = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
 ) {
 
-  package {'universalforwarder':
+  package { 'universalforwarder':
     source          => $install_source,
     install_options => {
       'AGREETOLICENSE'         => 'Yes',
@@ -30,7 +30,7 @@ class splunkforwarder
     require  => Package['universalforwarder'],
     notify   => Service['splunkforwarder'],
   }
-  service {'splunkforwarder':
+  service { 'splunkforwarder':
     ensure  => running,
     enable  => true,
     require => Package['universalforwarder'],
