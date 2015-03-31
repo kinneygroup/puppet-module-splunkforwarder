@@ -36,7 +36,7 @@ deployment_client_config
 ---------------------------
 Deployment client configuration file, stores Splunk deployment server settings.
 
-- *Default*: 'C:/Program Filest/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf'
+- *Default*: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf'
 
 inputs_config
 -------------
@@ -56,7 +56,7 @@ Splunk forwarder configuration file.
 Install and configure splunk universal forwarder through Hiera.
 
 <pre>
-splunkforwarder::install_source: "\\\\appserver.splunk.local\\apps\\splunkforwarder-6.1.1-207789-x64-release.msi"
+splunkforwarder::install_source: "\\appserver.splunk.local\apps\splunkforwarder-6.1.1-207789-x64-release.msi"
 splunkforwarder::deployment_server: 'deploymentserver.splunk.local'
 splunkforwarder::deployment_server_port: 9000
 splunkforwarder::deployment_client_config: 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf'
