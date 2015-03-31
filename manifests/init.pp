@@ -8,7 +8,7 @@ class splunkforwarder
   $install_source           = 'C:/splunkforwarder-6.1.1-207789-x64-release.msi',
   $deployment_server        = "splunk.${::domain}",
   $deployment_server_port   = '9997',
-  $deployment_client_config = 'C:/Program Filest/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf',
+  $deployment_client_config = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf',
   $inputs_config            = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/inputs.conf',
   $server_config            = 'C:/Program Files/SplunkUniversalForwarder/etc/system/local/server.conf',
 ) {
